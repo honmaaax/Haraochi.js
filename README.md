@@ -16,7 +16,7 @@
 
 ##Backbone.js
 
-* Backbone.jsの最もシンプルな使い方
+* [Backbone.jsの最もシンプルな使い方](https://github.com/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/Backbone.js%E3%81%AE%E6%9C%80%E3%82%82%E3%82%B7%E3%83%B3%E3%83%97%E3%83%AB%E3%81%AA%E4%BD%BF%E3%81%84%E6%96%B9.md)
 * ModelとViewの連携
 
 ##RequireJS
