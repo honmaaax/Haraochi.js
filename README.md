@@ -16,8 +16,8 @@
 
 ##Backbone.js
 
-* [Backbone.jsの最もシンプルな使い方](https://github.com/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/Backbone.jsの最もシンプルな使い方.md)
-* [Modelにデータを保存する方法](https://github.com/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/Modelにデータを保存する方法.md)
+* [Backbone.jsの最もシンプルな使い方](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/Backbone.jsの最もシンプルな使い方.md)
+* [Modelにデータを保存する方法](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/Modelにデータを保存する方法.md)
 * ModelとViewの連携
 
 ##RequireJS
