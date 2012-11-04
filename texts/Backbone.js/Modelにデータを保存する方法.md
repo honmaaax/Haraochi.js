@@ -13,7 +13,7 @@ console.log( m.get("name") ); // "まっくす"
 (2) 複数データの保存
 
 ```javascript
-var m = new Backbone.Model(); // "Modelが作られたよ！"
+var m = new Backbone.Model();
 m.set({
 	name : "まっくす",
 	age : 28,
