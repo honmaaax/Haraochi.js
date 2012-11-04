@@ -16,7 +16,6 @@
 
 ##Backbone.js
 
-* Backbone.jsの特徴とメリット
 * Backbone.jsの最もシンプルな使い方
 * ModelとViewの連携
 
