@@ -10,7 +10,7 @@ Backbone.jsは、JavaScriptでMVCモデルを実現しやすくするために�
 代わりに「Model（モデル）」「View（ビュー）」「Router（ルーター）」が用意されており、  
 事実上、これらがそれぞれコントローラーの役割を分担しています。
 
-##基本的な書き方
+##使い方
 
 (1) 先にbackbone.jsライブラリファイル本体を読み込む
 
@@ -22,103 +22,51 @@ Backbone.jsは、JavaScriptでMVCモデルを実現しやすくするために�
 (2) 最もシンプルな「Model」の書き方
 
 ```javascript
-// クラス定義
-var Model = Backbone.Model.extend({
-	initialize : function(){
-		console.log("Modelが作られたよ！");
-	}
-});
-// インスタンス化
-var m = new Model(); // "Modelが作られたよ！"
+var m = new Backbone.Model();
 ```
 
 (3) 最もシンプルな「View」の書き方
 
 ```javascript
-// クラス定義
+var v = new Backbone.View();
+```
+
+##クラスにメソッドを追加していく方法
+
+(1) 「Model」にメソッドを追加
+
+```javascript
+var Model = Backbone.Model.extend({
+	initialize : function(){
+		console.log("Modelが作られたよ！");
+	},
+	methodA : function(){
+		console.log("methodAが呼ばれたよ！");
+	},
+	methodB : function(){
+		console.log("methodBが呼ばれたよ！");
+	}
+});
+var m = new Model(); // "Modelが作られたよ！"
+m.methodA(); // "methodAが呼ばれたよ！"
+m.methodB(); // "methodBが呼ばれたよ！"
+```
+
+(2) 「View」にメソッドを追加
+
+```javascript
 var View = Backbone.View.extend({
 	initialize : function(){
 		console.log("Viewが作られたよ！");
+	},
+	methodA : function(){
+		console.log("methodAが呼ばれたよ！");
+	},
+	methodB : function(){
+		console.log("methodBが呼ばれたよ！");
 	}
 });
-// インスタンス化
 var v = new View(); // "Viewが作られたよ！"
-```
-
-##Modelにデータを保存する方法
-
-(1) 最もシンプルなデータ保存
-
-```javascript
-// クラス定義
-var Model = Backbone.Model.extend({
-	initialize : function(){
-		console.log("Modelが作られたよ！");
-	}
-});
-// インスタンス化
-var m = new Model(); // "Modelが作られたよ！"
-m.set({name : "まっくす"});
-console.log( m.get("name") ); // "まっくす"
-```
-
-(2) 複数データの保存
-
-```javascript
-// クラス定義
-var Model = Backbone.Model.extend({
-	initialize : function(){
-		console.log("Modelが作られたよ！");
-	}
-});
-// インスタンス化
-var m = new Model(); // "Modelが作られたよ！"
-m.set({
-	name : "まっくす",
-	age : 28,
-	id : 1234567890
-});
-console.log( m.get("name") ); // "まっくす"
-console.log( m.get("age") ); // 28
-console.log( m.get("id") ); // 1234567890
-```
-
-(3) クラス内部でのデータ保存
-
-```javascript
-// クラス定義
-var Model = Backbone.Model.extend({
-	initialize : function(){
-		this.set({
-			name : "まっくす",
-			age : 28,
-			id : 1234567890
-		});
-	}
-});
-// インスタンス化
-var m = new Model();
-console.log( m.get("name") ); // "まっくす"
-console.log( m.get("age") ); // 28
-console.log( m.get("id") ); // 1234567890
-```
-
-(4) インスタンス化するときの引数を利用したデータ保存
-
-```javascript
-// クラス定義
-var Model = Backbone.Model.extend({
-	initialize : function(){
-		
-	}
-});
-// インスタンス化
-var m = new Model({
-	name : "まっくす",
-	age : 28,
-	id : 1234567890
-});
-console.log( m.get("name") ); // "まっくす"
-console.log( m.get("age") ); // 28
-console.log( m.get("id") ); // 1234567890
+v.methodA(); // "methodAが呼ばれたよ！"
+v.methodB(); // "methodBが呼ばれたよ！"
 ```
