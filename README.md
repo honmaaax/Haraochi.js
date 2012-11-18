@@ -19,6 +19,7 @@
 * [Backbone.jsの概要と注意点](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/Backbone.jsの概要と注意点.md)
 * [Backbone.jsの最もシンプルな使い方](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/Backbone.jsの最もシンプルな使い方.md)
 * [Modelにデータを保存する方法](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/Modelにデータを保存する方法.md)
+* [DOMイベントを定義する（eventsとdelegateEvents）](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/DOMイベントを定義する（eventsとdelegateEvents）.md)
 * ModelとViewの連携
 
 ##RequireJS
