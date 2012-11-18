@@ -1,4 +1,4 @@
-define([], function(){
+define(function(){
 	return function(){
 		describe('Backbone.jsの最もシンプルな使い方', function(){
 			it('最小限な使い方', function(){
@@ -179,6 +179,10 @@ define([], function(){
 				expect(self.stubs.showForm).toHaveBeenCalledOnce();
 			});
 			describe('eventsで指定したDOM要素はいつ生成してもイベントが適用される', function(){
+				afterEach(function(){
+					var $el = $('.popup');
+					$el[0] && $el.remove();
+				});
 				it('クラスを定義する前に生成しても動くし、', function(){
 					$('<div class="popup" />').appendTo('.container');
 					var View = Backbone.View.extend({
