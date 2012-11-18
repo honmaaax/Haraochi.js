@@ -80,7 +80,7 @@ var v = new View();
 
 ##eventsで指定したDOM要素はいつ生成してもイベントが適用される
 
-クラスを定義した前に生成しても動くし、
+クラスを定義する前に生成しても動くし、
 
 ```javascript
 $('<div class="popup" />').appendTo('.container');
