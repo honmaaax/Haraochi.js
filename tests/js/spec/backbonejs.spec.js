@@ -179,7 +179,8 @@ define([], function(){
 				expect(self.stubs.showForm).toHaveBeenCalledOnce();
 			});
 			describe('eventsで指定したDOM要素はいつ生成してもイベントが適用される', function(){
-				it('インスタンス前に生成しても動くし、', function(){
+				it('クラスを定義した前に生成しても動くし、', function(){
+					$('<div class="popup" />').appendTo('.container');
 					var View = Backbone.View.extend({
 						el : '.container',
 						events : {
@@ -190,12 +191,11 @@ define([], function(){
 						}
 					});
 					self.stub = sinon.stub(View.prototype, 'render');
-					$('<div class="popup" />').appendTo('.container');
 					var v = new View();
 					$('.popup').trigger('click');
 					expect(self.stub).toHaveBeenCalledOnce();
 				});
-				it('インスタンス後に生成しても動く', function(){
+				it('インスタンス化した後に生成しても動く', function(){
 					var View = Backbone.View.extend({
 						el : '.container',
 						events : {

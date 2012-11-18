@@ -80,9 +80,10 @@ var v = new View();
 
 ##eventsで指定したDOM要素はいつ生成してもイベントが適用される
 
-インスタンス前に生成しても動くし、
+クラスを定義した前に生成しても動くし、
 
 ```javascript
+$('<div class="popup" />').appendTo('.container');
 var View = Backbone.View.extend({
 	el : '.container',
 	events : {
@@ -92,11 +93,10 @@ var View = Backbone.View.extend({
 		//.popupがクリックされたらココが実行されるよ！
 	}
 });
-$('<div class="popup" />').appendTo('.container');
 var v = new View();
 ```
 
-インスタンス後に生成しても動く
+インスタンス化した後に生成しても動く
 
 ```javascript
 var View = Backbone.View.extend({
