@@ -82,5 +82,136 @@ define([], function(){
 				expect(m.get("id")).toEqual(1234567890);
 			});
 		});
+		describe('DOMイベントを定義する（eventsとdelegateEvents）', function(){
+			var self = this;
+			beforeEach(function(){
+				loadFixtures('../../../html/backbonejs.html');
+			});
+			afterEach(function(){
+				self.stub && self.stub.restore();
+				self.stubs && _.each(self.stubs, function(stub){stub.restore();});
+			});
+			describe('DOMイベントを定義する方法は2つ', function(){
+				it('(1) eventsを使う方法', function(){
+					var View = Backbone.View.extend({
+						el : '.container',
+						events : {
+							'click .button' : 'render'
+						},
+						render : function(){
+							//.buttonがクリックされたらココが実行されるよ！
+						}
+					});
+					self.stub = sinon.stub(View.prototype, 'render');
+					var v = new View();
+					$('.button').trigger('click');
+					expect(self.stub).toHaveBeenCalledOnce();
+				});
+				it('(2) delegateEventsを使う方法', function(){
+					var View = Backbone.View.extend({
+						el : '.container',
+						initialize : function(){
+							this.delegateEvents({
+								"click .button" : "render"
+							});
+						},
+						render : function(){
+							//.buttonがクリックされたらココが実行されるよ！
+						}
+					});
+					self.stub = sinon.stub(View.prototype, 'render');
+					var v = new View();
+					$('.button').trigger('click');
+					expect(self.stub).toHaveBeenCalledOnce();
+				});
+			});
+			it('複数のDOM要素に同じイベントを同時適用することも可能', function(){
+				var View = Backbone.View.extend({
+					el : '.container',
+					events : {
+						'click .button, .menu, .refresh' : 'render'
+					},
+					render : function(){
+						//.buttonか.menuか.refreshがクリックされたらココが実行！
+					}
+				});
+				self.stub = sinon.stub(View.prototype, 'render');
+				var v = new View();
+				$('.button, .menu, .refresh').trigger('click');
+				expect(self.stub).toHaveBeenCalledTwice();
+			});
+			it('複数のDOMイベントを追加することも可能', function(){
+				var View = Backbone.View.extend({
+					el : '.container',
+					events : {
+						'click .button' : 'render',
+						'click .menu' : 'goToOtherPage',
+						'mouseover .menu' : 'hoverMenu',
+						'focus .text_field' : 'showForm'
+					},
+					render : function(){
+						//.buttonがクリックされたらココが実行されるよ！
+					},
+					goToOtherPage : function(){
+						//.menuがクリックされたらココが実行されるのじゃ！
+					},
+					hoverMenu : function(){
+						//.menuの上にカーソルが載ったらココが実行されるぜ！
+					},
+					showForm : function(){
+						//.text_fieldがフォーカスを受け取ったらココが実行だ！
+					}
+				});
+				self.stubs = {
+					render : sinon.stub(View.prototype, 'render'),
+					goToOtherPage : sinon.stub(View.prototype, 'goToOtherPage'),
+					hoverMenu : sinon.stub(View.prototype, 'hoverMenu'),
+					showForm : sinon.stub(View.prototype, 'showForm')
+				};
+				var v = new View();
+				$('.button').trigger('click');
+				$('.menu').trigger('click');
+				$('.menu').trigger('mouseover');
+				$('.text_field').trigger('focus');
+				expect(self.stubs.render).toHaveBeenCalledOnce();
+				expect(self.stubs.goToOtherPage).toHaveBeenCalledOnce();
+				expect(self.stubs.hoverMenu).toHaveBeenCalledOnce();
+				expect(self.stubs.showForm).toHaveBeenCalledOnce();
+			});
+			describe('eventsで指定したDOM要素はいつ生成してもイベントが適用される', function(){
+				it('インスタンス前に生成しても動くし、', function(){
+					var View = Backbone.View.extend({
+						el : '.container',
+						events : {
+							'click .popup' : 'render'
+						},
+						render : function(){
+							//.popupがクリックされたらココが実行されるよ！
+						}
+					});
+					self.stub = sinon.stub(View.prototype, 'render');
+					$('<div class="popup" />').appendTo('.container');
+					var v = new View();
+					$('.popup').trigger('click');
+					expect(self.stub).toHaveBeenCalledOnce();
+				});
+				it('インスタンス後に生成しても動く', function(){
+					var View = Backbone.View.extend({
+						el : '.container',
+						events : {
+							'click .popup' : 'render'
+						},
+						render : function(){
+							//.popupがクリックされたらココが実行されるよ！
+						}
+					});
+					self.stub = sinon.stub(View.prototype, 'render');
+					var v = new View();
+					$('<div class="popup" />').appendTo('.container');
+					$('.popup').trigger('click');
+					expect(self.stub).toHaveBeenCalledOnce();
+				});
+			});
+		});
 	};
 });
