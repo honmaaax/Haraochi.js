@@ -7,6 +7,9 @@
 jQueryで書くとこんな記述
 
 ```javascript
+var render = function(){
+	//.buttonがクリックされたらココが実行されるよ！
+};
 $('.container').find('.button').on('click', render);
 ```
 
