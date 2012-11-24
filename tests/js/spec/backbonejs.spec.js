@@ -92,6 +92,12 @@ define(function(){
 				self.stubs && _.each(self.stubs, function(stub){stub.restore();});
 			});
 			describe('DOMイベントを定義する方法は2つ', function(){
+				it('jQueryで書くとこんな記述', function(){
+					var render = sinon.spy();
+					$('.container').find('.button').on('click', render);
+					$('.container').find('.button').trigger('click');
+					expect(render).toHaveBeenCalledOnce();
+				});
 				it('(1) eventsを使う方法', function(){
 					var View = Backbone.View.extend({
 						el : '.container',
@@ -125,20 +131,41 @@ define(function(){
 					expect(self.stub).toHaveBeenCalledOnce();
 				});
 			});
-			it('複数のDOM要素に同じイベントを同時適用することも可能', function(){
-				var View = Backbone.View.extend({
-					el : '.container',
-					events : {
-						'click .button, .menu, .refresh' : 'render'
-					},
-					render : function(){
-						//.buttonか.menuか.refreshがクリックされたらココが実行！
-					}
+			describe('複数のDOM要素に同じイベントを同時適用することも可能', function(){
+				it('こんな感じで指定することもできるし、', function(){
+					var View = Backbone.View.extend({
+						el : '.container',
+						events : {
+							'click .button' : 'render',
+							'click .menu' : 'render',
+							'click .refresh' : 'render'
+						},
+						render : function(){
+							//.buttonか.menuか.refreshがクリックされたらココが実行！
+						}
+					});
+					self.stub = sinon.stub(View.prototype, 'render');
+					var v = new View();
+					$('.button').trigger('click');
+					$('.menu').trigger('click');
+					$('.refresh').trigger('click');
+					expect(self.stub).toHaveBeenCalledThrice();
 				});
-				self.stub = sinon.stub(View.prototype, 'render');
-				var v = new View();
-				$('.button, .menu, .refresh').trigger('click');
-				expect(self.stub).toHaveBeenCalledTwice();
+				it('カンマ区切りで指定することもできる。', function(){
+					var View = Backbone.View.extend({
+						el : '.container',
+						events : {
+							'click .button, .menu, .refresh' : 'render'
+						},
+						render : function(){
+							//.buttonか.menuか.refreshがクリックされたらココが実行！
+						}
+					});
+					self.stub = sinon.stub(View.prototype, 'render');
+					var v = new View();
+					$('.button, .menu, .refresh').trigger('click');
+					expect(self.stub).toHaveBeenCalledThrice();
+				});
 			});
 			it('複数のDOMイベントを追加することも可能', function(){
 				var View = Backbone.View.extend({

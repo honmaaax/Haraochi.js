@@ -4,6 +4,14 @@
 
 ##DOMイベントを定義する方法は2つ
 
+jQueryで書くとこんな記述
+
+```javascript
+$('.container').find('.button').on('click', render);
+```
+
+をBackbone.jsで書くと以下。  
+  
 (1) eventsを使う方法
 
 ```javascript
@@ -26,7 +34,7 @@ var View = Backbone.View.extend({
 	el : '.container',
 	initialize : function(){
 		this.delegateEvents({
-			"click .button" : "render"
+			'click .button' : 'render'
 		});
 	},
 	render : function(){
@@ -36,7 +44,28 @@ var View = Backbone.View.extend({
 var v = new View();
 ```
 
+**※eventsやdelegateEventsを使うときは必ずelを指定しないとダメ**
+
 ##複数のDOM要素に同じイベントを同時適用することも可能
+
+こんな感じで指定することもできるし、
+
+```javascript
+var View = Backbone.View.extend({
+	el : '.container',
+	events : {
+		'click .button' : 'render',
+		'click .menu' : 'render',
+		'click .refresh' : 'render'
+	},
+	render : function(){
+		//.buttonか.menuか.refreshがクリックされたらココが実行！
+	}
+});
+var v = new View();
+```
+
+カンマ区切りで指定することもできる。
 
 ```javascript
 var View = Backbone.View.extend({
