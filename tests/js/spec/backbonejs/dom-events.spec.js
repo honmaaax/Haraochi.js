@@ -1,14 +1,14 @@
 define(function(){
 	return function(){
+		var self = this;
+		beforeEach(function(){
+			loadFixtures('../../../html/backbonejs.html');
+		});
+		afterEach(function(){
+			self.stub && self.stub.restore();
+			self.stubs && _.each(self.stubs, function(stub){stub.restore();});
+		});
 		describe('DOMイベントを定義する（eventsとdelegateEvents）', function(){
-			var self = this;
-			beforeEach(function(){
-				loadFixtures('../../../html/backbonejs.html');
-			});
-			afterEach(function(){
-				self.stub && self.stub.restore();
-				self.stubs && _.each(self.stubs, function(stub){stub.restore();});
-			});
 			describe('DOMイベントを定義する方法は2つ', function(){
 				it('jQueryで書くとこんな記述', function(){
 					var render = sinon.spy();
@@ -179,13 +179,6 @@ define(function(){
 			});
 		});
 		describe('eventsを使うときはel定義に注意！', function(){
-			var self = this;
-			beforeEach(function(){
-				loadFixtures('../../../html/backbonejs.html');
-			});
-			afterEach(function(){
-				self.stub && self.stub.restore();
-			});
 			it('elを定義しないとevents機能は動かない', function(){
 				var View = Backbone.View.extend({
 					events : {
@@ -250,6 +243,82 @@ define(function(){
 				new View();
 				$('.button').trigger('click');
 				expect(self.stub).toHaveBeenCalledOnce();
+			});
+		});
+		describe('delegateEventsとundelegateEventsの独特な挙動', function(){
+			it('eventsを定義しているとdelegateEventsは無視される', function(){
+				var View = Backbone.View.extend({
+					el : '.container',
+					events : {
+						'click .button' : 'render'
+					},
+					initialize : function(){
+						this.delegateEvents({
+							'click .menu' : 'showMenu'
+						});
+					},
+					render : function(){
+						//.buttonがクリックされたらココが実行されるよ！
+					},
+					showMenu : function(){
+						//.menuがクリックされてもココは実行されないよ！
+					}
+				});
+				self.stubs = {
+					render : sinon.stub(View.prototype, 'render'),
+					showMenu : sinon.stub(View.prototype, 'showMenu')
+				};
+				new View();
+				$('.button').trigger('click');
+				$('.menu').trigger('click');
+				expect(self.stubs.render).toHaveBeenCalledOnce();
+				expect(self.stubs.showMenu).not.toHaveBeenCalledOnce();
+			});
+			it('delegateEventsを再実行すると前回の設定は破棄される', function(){
+				var View = Backbone.View.extend({
+					el : '.container',
+					initialize : function(){
+						this.delegateEvents({
+							'click .button' : 'render'
+						});
+						this.delegateEvents({
+							'click .menu' : 'showMenu'
+						});
+					},
+					render : function(){
+						//.buttonがクリックされてもココは実行されないよ！
+					},
+					showMenu : function(){
+						//.menuがクリックされたらココが実行されるよ！
+					}
+				});
+				self.stubs = {
+					render : sinon.stub(View.prototype, 'render'),
+					showMenu : sinon.stub(View.prototype, 'showMenu')
+				};
+				new View();
+				$('.button').trigger('click');
+				$('.menu').trigger('click');
+				expect(self.stubs.render).not.toHaveBeenCalledOnce();
+				expect(self.stubs.showMenu).toHaveBeenCalledOnce();
+			});
+			it('undelegateEventsを実行すると全てのイベントを破棄する', function(){
+				var View = Backbone.View.extend({
+					el : '.container',
+					initialize : function(){
+						this.delegateEvents({
+							'click .button' : 'render'
+						});
+						this.undelegateEvents();
+					},
+					render : function(){
+						//.buttonがクリックされてもココは実行されないよ！
+					}
+				});
+				self.stub = sinon.stub(View.prototype, 'render');
+				new View();
+				$('.button').trigger('click');
+				expect(self.stub).not.toHaveBeenCalledOnce();
 			});
 		});
 	};
