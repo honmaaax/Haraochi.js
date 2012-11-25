@@ -19,7 +19,7 @@
 * 基本編
   * [Backbone.jsの概要と注意点](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/Backbone.jsの概要と注意点.md)
   * [Backbone.jsの最もシンプルな使い方](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/Backbone.jsの最もシンプルな使い方.md)
-  * elを定義しておけば、いつでもjQueryを使える！
+  * [elを定義すればいつでも高速にjQueryを使える！](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/elを定義すればいつでも高速にjQueryを使える！.md)
 * DOMイベント編
   * [DOMイベントを定義する（eventsとdelegateEvents）](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/DOMイベントを定義する（eventsとdelegateEvents）.md)
   * [eventsを使うときはel定義に注意！](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/eventsを使うときはel定義に注意！.md)
@@ -27,7 +27,7 @@
 * データのやり取り編
   * [Modelにデータを保存する方法](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/Modelにデータを保存する方法.md)
   * サーバーサイドと連携する方法
-* 連携編
+* メソッド連携編
   * onとtriggerを使ってメソッドを呼び合おう
   * ModelとViewを連携させよう（modelとonとtriggerと）
   * _.bindAllは自分でthisを指定できるニクイやつ

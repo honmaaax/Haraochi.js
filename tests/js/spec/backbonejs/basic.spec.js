@@ -39,5 +39,92 @@ define(function(){
 				stubs[1].restore();
 			});
 		});
+		describe('elを定義すれば、いつでも高速にjQueryを使える！', function(){
+			var self = this;
+			beforeEach(function(){
+				loadFixtures('../../../html/backbonejs.html');
+			});
+			afterEach(function(){
+				self.stub && self.stub.restore();
+				self.stubs && _.each(self.stubs, function(stub){stub.restore();});
+			});
+			it('elを定義するとthis.$elと書くだけでjQueryが使える', function(){
+				$('<div class="popup" />').appendTo('.container').hide();
+				var View = Backbone.View.extend({
+					el : '.popup',
+					initialize : function(){
+						this.$el.show(); // $('.popup').show();と同義
+					},
+					renderHello : function(){
+						this.$el.html('こんにちは'); // $('.popup').html('こんにちは');と同義
+					},
+					renderGoodBye : function(){
+						$('.popup').html('さようなら'); // 普通に書くことも可
+					}
+				});
+				var v = new View();
+				var $el = $('.popup');
+				expect($el.css('display')).toEqual('block');
+				v.renderHello();
+				expect($el.html()).toEqual('こんにちは');
+				v.renderGoodBye();
+				expect($el.html()).toEqual('さようなら');
+				$el.remove();
+			});
+			it('elの定義はインスタンス化するときでもOK！', function(){
+				$('<div class="popup" />').appendTo('.container').hide();
+				var View = Backbone.View.extend({
+					initialize : function(){
+						this.$el.show();
+					}
+				});
+				new View({el : '.popup'});
+				var $el = $('.popup');
+				expect($el.css('display')).toEqual('block');
+				$el.remove();
+			});
+			describe('elに指定するDOM要素はクラス定義より前に必要', function(){
+				it('クラス定義より後に生成しても正しく動作しない', function(){
+					var View = Backbone.View.extend({
+						el : '.popup',
+						initialize : function(){
+							this.$el.html('こんにちは'); // 表示されない
+						}
+					});
+					var v = new View();
+					$('<div class="popup" />').appendTo('.container');
+					var $el = $('.popup');
+					expect($el.html()).not.toEqual('こんにちは');
+					$el.remove();
+				});
+				it('クラス定義より前に生成すれば正しく動作する', function(){
+					$('<div class="popup" />').appendTo('.container');
+					var View = Backbone.View.extend({
+						el : '.popup',
+						initialize : function(){
+							this.$el.html('こんにちは'); // 表示される
+						}
+					});
+					var v = new View();
+					var $el = $('.popup');
+					expect($el.html()).toEqual('こんにちは');
+					$el.remove();
+				});
+				it('インスタンス化する時にelを定義するなら、インスタンス化より前に生成すれば正しく動作する', function(){
+					var View = Backbone.View.extend({
+						initialize : function(){
+							this.$el.html('こんにちは'); // 表示される
+						}
+					});
+					$('<div class="popup" />').appendTo('.container');
+					var v = new View({
+						el : '.popup'
+					});
+					var $el = $('.popup');
+					expect($el.html()).toEqual('こんにちは');
+					$el.remove();
+				});
+			});
+		});
 	};
 });
