@@ -303,7 +303,7 @@ define(function(){
 				$('.button').trigger('click');
 				expect(self.stub).toHaveBeenCalledOnce();
 			});
-			it('elにeventsと同じ要素を指定しても動く（※非推奨）', function(){
+			it('elにeventsと同じ要素を指定しても動く', function(){
 				var View = Backbone.View.extend({
 					el : '.button',
 					events : {
@@ -318,7 +318,7 @@ define(function(){
 				$('.button').trigger('click');
 				expect(self.stub).toHaveBeenCalledOnce();
 			});
-			it('elにbodyを指定しても動く（※非推奨）', function(){
+			it('elにbodyを指定しても動く', function(){
 				var View = Backbone.View.extend({
 					el : 'body',
 					events : {
