@@ -44,7 +44,7 @@ var View = Backbone.View.extend({
 var v = new View();
 ```
 
-##elにeventsと同じ要素を指定しても動く（※非推奨）
+##elにeventsと同じ要素を指定しても動く
 
 ```javascript
 var View = Backbone.View.extend({
@@ -59,7 +59,9 @@ var View = Backbone.View.extend({
 var v = new View();
 ```
 
-##elにbodyを指定しても動く（※非推奨）
+##elにbodyを指定しても動く
+
+bodyを指定しちゃったほうがラクだけど、あんまり多用しないほうが良いです。
 
 ```javascript
 var View = Backbone.View.extend({
