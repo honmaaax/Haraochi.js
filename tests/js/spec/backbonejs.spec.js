@@ -244,5 +244,79 @@ define(function(){
 				});
 			});
 		});
+		describe('eventsを使うときはel定義に注意！', function(){
+			var self = this;
+			beforeEach(function(){
+				loadFixtures('../../../html/backbonejs.html');
+			});
+			afterEach(function(){
+				self.stub && self.stub.restore();
+			});
+			it('elを定義しないとevents機能は動かない', function(){
+				var View = Backbone.View.extend({
+					events : {
+						'click .button' : 'render'
+					},
+					render : function(){
+						//.buttonがクリックされてもココが実行されない！
+					}
+				});
+				self.stub = sinon.stub(View.prototype, 'render');
+				new View();
+				$('.button').trigger('click');
+				expect(self.stub).not.toHaveBeenCalledOnce();
+				new View({el : '.container'});
+				$('.button').trigger('click');
+				expect(self.stub).toHaveBeenCalledOnce();
+			});
+			it('elには親要素を定義しないとevents機能は動かない', function(){
+				var View = Backbone.View.extend({
+					el : '.footer',
+					events : {
+						'click .button' : 'render'
+					},
+					render : function(){
+						//.buttonがクリックされてもココが実行されない！
+					}
+				});
+				self.stub = sinon.stub(View.prototype, 'render');
+				new View();
+				$('.button').trigger('click');
+				expect(self.stub).not.toHaveBeenCalledOnce();
+				new View({el : '.container'});
+				$('.button').trigger('click');
+				expect(self.stub).toHaveBeenCalledOnce();
+			});
+			it('elにeventsと同じ要素を指定しても動く（※非推奨）', function(){
+				var View = Backbone.View.extend({
+					el : '.button',
+					events : {
+						'click .button' : 'render'
+					},
+					render : function(){
+						//.buttonがクリックされたらココが実行されるよ！
+					}
+				});
+				self.stub = sinon.stub(View.prototype, 'render');
+				new View();
+				$('.button').trigger('click');
+				expect(self.stub).toHaveBeenCalledOnce();
+			});
+			it('elにbodyを指定しても動く（※非推奨）', function(){
+				var View = Backbone.View.extend({
+					el : 'body',
+					events : {
+						'click .button' : 'render'
+					},
+					render : function(){
+						//.buttonがクリックされたらココが実行されるよ！
+					}
+				});
+				self.stub = sinon.stub(View.prototype, 'render');
+				new View();
+				$('.button').trigger('click');
+				expect(self.stub).toHaveBeenCalledOnce();
+			});
+		});
 	};
 });
