@@ -205,6 +205,22 @@ define(function(){
 				expect(self.stubs.hoverMenu).toHaveBeenCalledOnce();
 				expect(self.stubs.showForm).toHaveBeenCalledOnce();
 			});
+			it('同じ要素＆同じイベントに対して複数メソッド実行はできない', function(){
+				var View = Backbone.View.extend({
+					el : 'body',
+					events : {
+						'click .button' : 'render',
+						'click .button' : 'goToOtherPage'
+					},
+					render : function(){
+
+					},
+					goToOtherPage : function(){
+
+					}
+				});
+				expect(View).toThrow();
+			});
 			describe('eventsで指定したDOM要素はいつ生成してもイベントが適用される', function(){
 				afterEach(function(){
 					var $el = $('.popup');

@@ -110,6 +110,27 @@ var View = Backbone.View.extend({
 var v = new View();
 ```
 
+##同じ要素＆同じイベントに対して複数メソッド実行はできない
+
+下記はJavaScriptの構文エラーが発生してしまう。
+
+```javascript
+var View = Backbone.View.extend({
+	el : 'body',
+	events : {
+		'click .button' : 'render',
+		'click .button' : 'goToOtherPage'
+	},
+	render : function(){
+		
+	},
+	goToOtherPage : function(){
+		
+	}
+});
+var v = new View();
+```
+
 ##eventsで指定したDOM要素はいつ生成してもイベントが適用される
 
 クラスを定義する前に生成しても動くし、
