@@ -47,7 +47,7 @@ var View = Backbone.View.extend({
 var v = new View();
 ```
 
-**※eventsやdelegateEventsを使うときは必ずelを定義しないとダメ**
+[※eventsやdelegateEventsを使うときは必ずelを定義しないとダメ](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/eventsを使うときはel定義に注意！.md)
 
 ##複数のDOM要素に同じイベントを同時定義することも可能
 
