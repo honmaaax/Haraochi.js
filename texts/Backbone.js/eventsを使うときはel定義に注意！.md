@@ -16,6 +16,14 @@ var View = Backbone.View.extend({
 var v = new View();
 ```
 
+【補足】elの定義はインスタンス化するときでもOK！
+
+```javascript
+var v = new View({
+	el : '.container'
+});
+```
+
 ##elには親要素を定義しないとevents機能は動かない
 
 こんなHTML構成のとき、
