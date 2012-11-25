@@ -24,6 +24,8 @@
   * [DOMイベントを定義する（eventsとdelegateEvents）](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/DOMイベントを定義する（eventsとdelegateEvents）.md)
   * [eventsを使うときはel定義に注意！](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/eventsを使うときはel定義に注意！.md)
   * [delegateEventsとundelegateEventsの独特な挙動](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/delegateEventsとundelegateEventsの独特な挙動.md)
+  * 呼ばれたメソッドの引数に代入される様々な情報
+  * eventsのメソッドに無名関数を指定する
 * データのやり取り編
   * [Modelにデータを保存する方法](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/Modelにデータを保存する方法.md)
   * サーバーサイドと連携する方法
