@@ -110,7 +110,7 @@ require([
 			});
 		});
 		// run spec
-		jasmine.getEnv().execute();
+		jasmineEnv.execute();
 	});
 	
 });
