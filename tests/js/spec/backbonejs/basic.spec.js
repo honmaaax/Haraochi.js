@@ -39,7 +39,7 @@ define(function(){
 				stubs[1].restore();
 			});
 		});
-		describe('elを定義すれば、いつでも高速にjQueryを使える！', function(){
+		describe('elで対象となるDOM要素を定義する', function(){
 			var self = this;
 			beforeEach(function(){
 				loadFixtures('../../../html/backbonejs.html');

@@ -19,7 +19,7 @@
 * 基本編
   * [Backbone.jsの概要と注意点](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/Backbone.jsの概要と注意点.md)
   * [Backbone.jsの最もシンプルな使い方](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/Backbone.jsの最もシンプルな使い方.md)
-  * [elを定義すればいつでも高速にjQueryを使える！](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/elを定義すればいつでも高速にjQueryを使える！.md)
+  * [elで対象となるDOM要素を定義する](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/elで対象となるDOM要素を定義する.md)
 * DOMイベント編
   * [DOMイベントを定義する（eventsとdelegateEvents）](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/DOMイベントを定義する（eventsとdelegateEvents）.md)
   * [eventsを使うときはel定義に注意！](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/eventsを使うときはel定義に注意！.md)
