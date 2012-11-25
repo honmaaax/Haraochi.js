@@ -4,20 +4,22 @@
 
 ##最小限な使い方
 
-* まず先にbackbone.jsライブラリファイル本体を読み込む
+まず先にbackbone.jsを利用するために必要なunderscore.js（or Lodash）とjQuery（or Zepto）の2ファイルを読み込んでから、backbone.js本体を読み込む
 
 ```html
+<script src="underscore.js"></script>
+<script src="jquery.js"></script>
 <script src="backbone.js"></script>
 <script src="script.js"></script>
 ```
 
-* 最もシンプルな「Model」の書き方
+最もシンプルな「Model」の書き方
 
 ```javascript
 var m = new Backbone.Model();
 ```
 
-* 最もシンプルな「View」の書き方
+最もシンプルな「View」の書き方
 
 ```javascript
 var v = new Backbone.View();
@@ -25,7 +27,7 @@ var v = new Backbone.View();
 
 ##newした瞬間に何かを実行したい場合
 
-* initializeを使えばOK！（Viewも同様）
+initializeを使えばOK！（Viewも同様）
 
 ```javascript
 var Model = Backbone.Model.extend({
@@ -38,7 +40,7 @@ var m = new Model(); // "Modelが作られたよ！"
 
 ##クラスにメソッドを追加したい場合
 
-* Modelにメソッドを追加する方法（Viewも同様）
+Modelにメソッドを追加する方法（Viewも同様）
 
 ```javascript
 var Model = Backbone.Model.extend({
