@@ -2,9 +2,14 @@
 
 -----------------------------------------------
 
-##最小限な使い方
+##ファイルを読み込む
 
-まず先にbackbone.jsを利用するために必要なunderscore.js（or Lodash）とjQuery（or Zepto）の2ファイルを読み込んでから、backbone.js本体を読み込む
+まず先にbackbone.jsを利用するために必要な2つのライブラリとして、
+
+* underscore.js（or Lodash）
+* jQuery（or Zepto）
+
+の2ファイルを読み込んでから、backbone.js本体を読み込む
 
 ```html
 <script src="underscore.js"></script>
@@ -12,6 +17,8 @@
 <script src="backbone.js"></script>
 <script src="script.js"></script>
 ```
+
+##最小限な書き方
 
 最もシンプルな「Model」の書き方
 
