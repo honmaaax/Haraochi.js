@@ -85,12 +85,29 @@ require([
 	})();
 	
 	require([
-		'spec/backbonejs.spec'
+		'spec/backbonejs/basic.spec',
+		'spec/backbonejs/dom-events.spec',
+		'spec/backbonejs/data-control.spec',
+		'spec/backbonejs/method-linkage.spec'
 	], function(
-		BackbonejsSpec
+		BackbonejsBasicSpec,
+		BackbonejsDomEventsSpec,
+		BackbonejsDataControlSpec,
+		BackbonejsMethodLinkageSpec
 	){
 		describe('Backbone.js', function(){
-			BackbonejsSpec();
+			describe('基本編', function(){
+				BackbonejsBasicSpec();
+			});
+			describe('DOMイベント編', function(){
+				BackbonejsDomEventsSpec();
+			});
+			describe('データのやり取り編', function(){
+				BackbonejsDataControlSpec();
+			});
+			describe('メソッド連携編', function(){
+				BackbonejsMethodLinkageSpec();
+			});
 		});
 		// run spec
 		jasmine.getEnv().execute();
