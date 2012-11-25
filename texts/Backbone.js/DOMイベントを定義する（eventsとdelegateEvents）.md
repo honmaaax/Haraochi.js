@@ -47,9 +47,9 @@ var View = Backbone.View.extend({
 var v = new View();
 ```
 
-**※eventsやdelegateEventsを使うときは必ずelを指定しないとダメ**
+**※eventsやdelegateEventsを使うときは必ずelを定義しないとダメ**
 
-##複数のDOM要素に同じイベントを同時適用することも可能
+##複数のDOM要素に同じイベントを同時定義することも可能
 
 こんな感じで指定することもできるし、
 
@@ -83,7 +83,7 @@ var View = Backbone.View.extend({
 var v = new View();
 ```
 
-##複数のDOMイベントを追加することも可能
+##複数のDOMイベントを定義することも可能
 
 ```javascript
 var View = Backbone.View.extend({
