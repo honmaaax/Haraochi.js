@@ -10,7 +10,7 @@ jQueryで書くとこんな記述
 var render = function(){
 	//.buttonがクリックされたらココが実行されるよ！
 };
-$('.container').find('.button').on('click', render);
+$('.container').on('click', '.button', render);
 ```
 
 をBackbone.jsで書くと以下。  

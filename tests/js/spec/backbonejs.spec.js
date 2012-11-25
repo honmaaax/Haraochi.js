@@ -94,7 +94,7 @@ define(function(){
 			describe('DOMイベントを定義する方法は2つ', function(){
 				it('jQueryで書くとこんな記述', function(){
 					var render = sinon.spy();
-					$('.container').find('.button').on('click', render);
+					$('.container').on('click', '.button', render);
 					$('.container').find('.button').trigger('click');
 					expect(render).toHaveBeenCalledOnce();
 				});
