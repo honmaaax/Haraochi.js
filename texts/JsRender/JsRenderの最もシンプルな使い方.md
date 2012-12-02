@@ -37,3 +37,14 @@ var user = {
 var html = $.templates(tmpl).render(user);
 console.log(html); // "<div>まっくすは29歳で神奈川県出身です。</div>"
 ```
+
+##エスケープさせる方法
+
+セキュリティ対策のため、ユーザーからの入力項目に関してはエスケープ必須。
+
+```javascript
+var tmpl = "<div>{{>name}}さん、こんにちは。</div>";
+var user = {name : '<script></script>'};
+var html = $.templates(tmpl).render(user);
+console.log(html); // "<div>&lt;script&gt;&lt;/script&gt;さん、こんにちは。</div>"
+```

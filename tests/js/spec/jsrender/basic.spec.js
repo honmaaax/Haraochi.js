@@ -17,6 +17,12 @@ define(function(){
 				var html = $.templates(tmpl).render(user);
 				expect(html).toEqual('<div>まっくすは29歳で神奈川県出身です。</div>');
 			});
+			it('エスケープさせる方法', function(){
+				var tmpl = "<div>{{>name}}さん、こんにちは。</div>";
+				var user = {name : '<script></script>'};
+				var html = $.templates(tmpl).render(user);
+				expect(html).toEqual('<div>&lt;script&gt;&lt;/script&gt;さん、こんにちは。</div>');
+			});
 		});
 	};
 });
