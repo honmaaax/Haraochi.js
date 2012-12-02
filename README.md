@@ -37,7 +37,7 @@
 ##JsRender
 
 * 基本編
-  * JsRenderの概要と注意点
+  * [JsRenderの概要と注意点](/honmaaax/Haraochi.js/blob/master/texts/JsRender/JsRenderの概要と注意点.md)
   * JsRenderの最もシンプルな使い方
   * エスケープさせてセキュリティ対策
 * 条件分岐編
