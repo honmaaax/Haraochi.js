@@ -38,7 +38,7 @@
 
 * 基本編
   * [JsRenderの概要と注意点](/honmaaax/Haraochi.js/blob/master/texts/JsRender/JsRenderの概要と注意点.md)
-  * JsRenderの最もシンプルな使い方
+  * [JsRenderの最もシンプルな使い方](/honmaaax/Haraochi.js/blob/master/texts/JsRender/JsRenderの最もシンプルな使い方.md)
   * エスケープさせてセキュリティ対策
 * 条件分岐編
   * ifとelseで条件分岐

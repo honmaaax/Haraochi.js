@@ -88,12 +88,14 @@ require([
 		'spec/backbonejs/basic.spec',
 		'spec/backbonejs/dom-events.spec',
 		'spec/backbonejs/data-control.spec',
-		'spec/backbonejs/method-linkage.spec'
+		'spec/backbonejs/method-linkage.spec',
+		'spec/jsrender/basic.spec'
 	], function(
 		BackbonejsBasicSpec,
 		BackbonejsDomEventsSpec,
 		BackbonejsDataControlSpec,
-		BackbonejsMethodLinkageSpec
+		BackbonejsMethodLinkageSpec,
+		JsRenderBasicSpec
 	){
 		describe('Backbone.js', function(){
 			describe('基本編', function(){
@@ -107,6 +109,11 @@ require([
 			});
 			describe('メソッド連携編', function(){
 				BackbonejsMethodLinkageSpec();
+			});
+		});
+		describe('JsRender', function(){
+			describe('基本編', function(){
+				JsRenderBasicSpec();
 			});
 		});
 		// run spec
