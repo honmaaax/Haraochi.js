@@ -30,7 +30,7 @@
   * [Modelにデータを保存する方法](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/Modelにデータを保存する方法.md)
   * サーバーサイドと連携する方法
 * メソッド連携編
-  * onとtriggerを使ってメソッドを呼び合おう
+  * [onとtriggerを使ってイベントドリブン化](/honmaaax/Haraochi.js/blob/master/texts/Backbone.js/onとtriggerを使ってイベントドリブン化.md)
   * ModelとViewを連携させよう（modelとonとtriggerと）
   * _.bindAllは自分でthisを指定できるニクイやつ
 
