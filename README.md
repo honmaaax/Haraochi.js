@@ -31,8 +31,7 @@
   * サーバーサイドと連携する方法
 * メソッド連携編
   * [onとtriggerを使ってイベントドリブン化](/texts/Backbone.js/onとtriggerを使ってイベントドリブン化.md)
-  * ModelとViewを連携させよう（modelとonとtriggerと）
-  * _.bindAllは自分でthisを指定できるニクイやつ
+  * ModelとViewを連携させよう（modelとonとtrigger）
 
 ##JsRender
 
@@ -59,27 +58,3 @@
 * RequireJSの特徴とメリット
 * RequireJSの最もシンプルな使い方
 * ファイルパスを一括管理する書き方
-
-##CreateJS
-
-* CreateJSの特徴とメリット
-* CreateJSの最もシンプルな使い方
-* 様々なアニメーションの書き方
-
-##Zepto
-
-* Zeptoの特徴とメリット
-* Zeptoの基本的な使い方
-* ZeptoとjQueryの相違点
-
-##Lo-Dash
-
-* Lo-Dashの特徴とメリット
-* Lo-Dashの基本的な使い方
-* Lo-Dashとunderscore.jsの相違点
-
-##Jasmine
-
-* Jasmineの特徴とメリット
-* Jasmineの最もシンプルな使い方
-* 様々なテストの書き方
